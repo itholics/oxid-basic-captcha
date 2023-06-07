@@ -1,0 +1,28 @@
+{
+  "name": "itholics/oxid-basic-captcha",
+  "description": "Update to [https://github.com/OXIDprojects/captcha-module] for OXID eShop 7.0.0",
+  "type": "oxideshop-module",
+  "version": "0.1.0",
+  "keywords": [
+    "oxid",
+    "modules",
+    "eShop",
+    "captcha"
+  ],
+  "authors": [{"name": "ITholics Dev Team", "email": "info@itholics.de"}],
+  "extra": {
+    "oxideshop": {
+      "target-directory": "ith_modules/basic_captcha"
+    }
+  },
+  "require": {
+   "oxid-esales/oxideshop-ce": "^7.0",
+   "ext-gd": "*",
+   "oxid-esales/smarty-component": "^1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "ITholics\\Oxid\\BasicCaptcha\\": "./"
+    }
+  }
+}
