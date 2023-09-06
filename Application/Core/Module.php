@@ -9,7 +9,7 @@ class Module
     use Connection;
 
     public const ID = 'ith_basic_captcha';
-    public const VERSION = '0.1.1';
+    public const VERSION = '0.1.2';
 
     protected static $__instance;
 
