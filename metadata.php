@@ -37,7 +37,7 @@ $aModule = [
         ['template' => 'form/contact.tpl', 'block' => 'captcha_form', 'file' => '/Application/views/blocks/ith_basic_captcha_form.tpl'],
         ['template' => 'form/privatesales/invite.tpl', 'block' => 'captcha_form', 'file' => '/Application/views/blocks/ith_basic_captch_form.tpl'],
         ['template' => 'form/pricealarm.tpl', 'block' => 'captcha_form', 'file' => '/Application/views/blocks/ith_basic_captch_form.tpl'],
-        ['template' => 'form/forgotpwd_email.tpl', 'block' => 'captcha_form', 'file' => '/Application/views/blocks/ith_basic_captch_form.tpl']
+       // ['template' => 'form/forgotpwd_email.tpl', 'block' => 'captcha_form', 'file' => '/Application/views/blocks/ith_basic_captch_form.tpl']
     ],
     'events'                  => [
         'onActivate'   => Module::class . '::onActivate',
