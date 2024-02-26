@@ -2,7 +2,7 @@
   "name": "itholics/oxid-basic-captcha",
   "description": "Update to [https://github.com/OXIDprojects/captcha-module] for OXID eShop 7.0.0",
   "type": "oxideshop-module",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "keywords": [
     "oxid",
     "modules",

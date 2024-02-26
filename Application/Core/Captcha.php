@@ -176,8 +176,8 @@ class Captcha
         $return = true;
 
         // spam spider prevention
-        $mac = Registry::getConfig()->getRequestParameter('c_mac');
-        $macHash = Registry::getConfig()->getRequestParameter('c_mach');
+        $mac = Registry::getRequest()->getRequestParameter('c_mac');
+        $macHash = Registry::getRequest()->getRequestParameter('c_mach');
 
         if (!$this->pass($mac, $macHash)) {
             $return = false;
