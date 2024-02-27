@@ -24,7 +24,7 @@ $aModule = [
         'ith_basic_captcha_generator' => ITholics\Oxid\BasicCaptcha\Application\Controller\ImageGeneratorController::class,
     ],
     'templates'               => [
-        'ith_basic_captcha.tpl' => 'ith_modules/basic_captcha/Application/views/tpl/ith_basic_captcha.tpl',
+        'ith_basic_captcha.tpl' => 'Application/views/tpl/ith_basic_captcha.tpl',
     ],
     'extend'                  => [
         OxidEsales\Eshop\Application\Controller\ArticleDetailsController::class => ITholics\Oxid\BasicCaptcha\Application\Controller\DetailsController::class,
