@@ -3,17 +3,19 @@
 namespace ITholics\Oxid\BasicCaptcha\Application\Core;
 
 use ITholics\Oxid\BasicCaptcha\Application\Shared\Connection;
+use OxidEsales\EshopCommunity\Internal\Container\ContainerFactory;
+use OxidEsales\EshopCommunity\Internal\Framework\Module\Facade\ModuleSettingServiceInterface;
 
 class Module
 {
     use Connection;
 
     public const ID = 'ith_basic_captcha';
-    public const VERSION = '0.1.8';
+    public const VERSION = '0.1.9';
 
-    protected static $__instance;
+    protected static ?self $__instance = null;
 
-    public static function getInstance()
+    public static function getInstance(): static
     {
         return static::$__instance ?? (static::$__instance = oxNew(static::class));
     }
@@ -56,5 +58,17 @@ class Module
     public function deactivate(): void
     {
         $this->dropTable();
+    }
+
+    public function getDecryptKey(): string {
+        /** @var ModuleSettingServiceInterface $moduleSetting */
+        $moduleSetting = ContainerFactory::getInstance()->getContainer()->get(ModuleSettingServiceInterface::class);
+        return trim($moduleSetting->getString('oecaptchakey', 'ith_basic_captcha')->toString()) ?: Captcha::ENCRYPT_KEY;
+    }
+
+    public function useFast(): bool {
+        /** @var ModuleSettingServiceInterface $moduleSetting */
+        $moduleSetting = ContainerFactory::getInstance()->getContainer()->get(ModuleSettingServiceInterface::class);
+        return $moduleSetting->getBoolean('fastUrl', 'ith_basic_captcha');
     }
 }

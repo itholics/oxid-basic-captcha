@@ -4,6 +4,8 @@ namespace ITholics\Oxid\BasicCaptcha\Application\Core;
 use ITholics\Oxid\BasicCaptcha\Application\Shared\Connection;
 use OxidEsales\Eshop\Core\Registry;
 use OxidEsales\Eshop\Core\UtilsObject;
+use OxidEsales\Eshop\Core\ViewConfig;
+use Symfony\Component\Filesystem\Path;
 
 class Captcha
 {
@@ -208,11 +210,23 @@ class Captcha
      */
     public function getImageUrl()
     {
+        if (Module::getInstance()->useFast()) {
+            return $this->getFastImageUrl();
+        }
         $config = Registry::getConfig();
-        $key = $config->getConfigParam('oecaptchakey') ?: static::ENCRYPT_KEY;
+        $key = Module::getInstance()->getDecryptKey();
         $encryptor = new \OxidEsales\Eshop\Core\Encryptor();
         
         return $config->getCurrentShopUrl() . sprintf('?cl=ith_basic_captcha_generator&e_mac=%s&shp=%d', $encryptor->encrypt($this->getText(), $key), $config->getShopId());
+    }
+
+    public function getFastImageUrl(): string {
+        $conf = Registry::get(ViewConfig::class);
+        $key = Module::getInstance()->getDecryptKey();
+        $encryptor = new \OxidEsales\Eshop\Core\Encryptor();
+        $key = $encryptor->encrypt($this->getText(), $key);
+        $moduleBase = $conf->getModuleUrl('ith_basic_captcha', 'render.php');
+        return Path::join($moduleBase, sprintf('?e_mac=%s&shp=%d', $key, $conf->getActiveShopId()));
     }
 
     /**
